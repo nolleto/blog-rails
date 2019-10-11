@@ -1,0 +1,13 @@
+<h1>
+  <%= @post.title %>
+</h1>
+
+<p>
+  Submitted <%= time_ago_in_words(@post.created_at) %> Ago
+</p>
+
+<p>
+  <%= @post.body %>
+</p>
+
+<%= link_to 'Back to posts', root_path %>
