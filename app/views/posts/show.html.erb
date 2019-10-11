@@ -2,7 +2,7 @@
   <h2><%= @post.title %></h2>
 
   <h6 class='text-secondary'>
-    Submitted <%= time_ago_in_words(@post.created_at) %> Ago
+    Submitted <%= time_ago_in_words(@post.created_at) %> Ago by <%= @post.user.email %>
   </h6>
 </div>
 
