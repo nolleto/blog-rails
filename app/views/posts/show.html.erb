@@ -9,5 +9,6 @@
 <p><%= @post.body %></p>
 
 <div class='d-flex justify-content-end'>
-  <%= link_to 'Edit', edit_post_path(@post), class: 'btn btn-primary' %>
+  <%= link_to 'Edit', edit_post_path(@post), class: 'btn btn-primary mr-2' %>
+  <%= link_to 'Delete', post_path(@post), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } %>
 </div>
