@@ -1,6 +1,17 @@
 <h2>New Post</h2>
 
 <%= form_for :post, url: posts_path do |f| %>
+  <% if @post.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <%= pluralize(@post.errors.count, 'error') %> found
+      <ul>
+        <% @post.errors.full_messages.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <div class='form-group'>
     <%= f.label :title %>
     <%= f.text_field :title, class: 'form-control' %>
