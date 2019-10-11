@@ -1,6 +1,9 @@
 <div class='d-flex align-items-center justify-content-between mb-4'>
   <h1>Post list</h1>
-  <%= link_to 'Create new post', new_post_path, class: 'btn btn-primary float-right' %>
+
+  <% if user_signed_in? %>
+    <%= link_to 'Create new post', new_post_path, class: 'btn btn-primary float-right' %>
+  <% end %>
 </div>
 
 <% @posts.each do |post| %>
