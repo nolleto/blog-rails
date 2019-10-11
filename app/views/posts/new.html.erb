@@ -1,17 +1,17 @@
-<h1>New Post</h1>
+<h2>New Post</h2>
 
 <%= form_for :post, url: posts_path do |f| %>
-  <div>
+  <div class='form-group'>
     <%= f.label :title %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: 'form-control' %>
   </div>
 
-  <div>
+  <div class='form-group'>
     <%= f.label :body %>
-    <%= f.text_area :body %>
+    <%= f.text_area :body, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= f.submit %>
+  <div class='form-group'>
+    <%= f.submit 'Save Post', class: 'btn btn-primary' %>
   </div>
 <% end %>

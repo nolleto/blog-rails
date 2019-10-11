@@ -1,13 +1,9 @@
-<h1>
-  <%= @post.title %>
-</h1>
+<div class='mb-4'>
+  <h2><%= @post.title %></h2>
 
-<p>
-  Submitted <%= time_ago_in_words(@post.created_at) %> Ago
-</p>
+  <h6 class='text-secondary'>
+    Submitted <%= time_ago_in_words(@post.created_at) %> Ago
+  </h6>
+</div>
 
-<p>
-  <%= @post.body %>
-</p>
-
-<%= link_to 'Back to posts', root_path %>
+<p><%= @post.body %></p>

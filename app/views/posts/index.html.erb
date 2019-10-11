@@ -1,10 +1,13 @@
-<h1>Post list</h1>
-
-<%= link_to 'Create new post', new_post_path %>
+<div class='d-flex align-items-center justify-content-between mb-4'>
+  <h1>Post list</h1>
+  <%= link_to 'Create new post', new_post_path, class: 'btn btn-primary float-right' %>
+</div>
 
 <% @posts.each do |post| %>
-  <div>
-    <h2><%= link_to post.title, post %></h2>
-    <p><%= post.created_at.strftime("%d/%m/%y %H:%M:%S") %></p>
+  <div class='card mb-2'>
+    <div class='card-body'>
+      <h5 class='card-title'><%= link_to post.title, post %></h5>
+      <h6 class='card-subtitle mb-2 text-muted'><%= post.created_at.strftime('%d/%m/%y %H:%M:%S') %></h6>
+    </div>
   </div>
 <% end %>

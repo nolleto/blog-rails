@@ -12,6 +12,27 @@
   </head>
 
   <body>
-    <%= yield %>
+    <nav class="navbar navbar-light bg-light">
+      <%= link_to 'Blog Rails', root_path, class: 'navbar-brand' %>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 col-md-3 col-xl-2">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <%= link_to 'Posts', posts_path, class: 'nav-link' %>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
