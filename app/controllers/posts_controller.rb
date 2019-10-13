@@ -1,8 +1,9 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :the_user_who_create_it?, only: [:edit, :destroy]
 
   def index
-    @posts = Post.all
+    @posts = Post.all.order('created_at DESC')
   end
 
   def new
@@ -47,6 +48,12 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :body).merge(user_id: current_user.id)
+  end
+
+  def the_user_who_create_it?
+    @post = Post.find(params[:id])
+
+    redirect_to root_path if @post.user_id != current_user.id
   end
 end
