@@ -14,3 +14,12 @@
     <%= link_to 'Delete', post_path(@post), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } %>
   </div>
 <% end %>
+
+<hr />
+
+<div class="mt-2">
+  <h5><%= @post.comments.count %> comments</h5>
+  <%= render "comments/form", comment: @comment %>
+  <%= render @post.comments %>
+</div>
+

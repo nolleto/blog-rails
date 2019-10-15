@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :the_user_who_create_it?, only: [:edit, :destroy]
+  before_action :post_owner?, only: [:edit, :update, :destroy]
 
   def index
     @posts = Post.all.order('created_at DESC')
@@ -12,7 +12,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-
+    
     if @post.save
       redirect_to @post
     else
@@ -21,7 +21,8 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.includes(:comments).find(params[:id])
+    @comment = Comment.new(post: @post)
   end
 
   def edit
@@ -51,7 +52,7 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :body).merge(user_id: current_user.id)
   end
 
-  def the_user_who_create_it?
+  def post_owner?
     @post = Post.find(params[:id])
 
     redirect_to root_path if @post.user_id != current_user.id
