@@ -1,19 +1,22 @@
-<div class='mb-4'>
+<div class="mb-4">
   <h2><%= @post.title %></h2>
 
-  <h6 class='text-secondary'>
-    Submitted <%= time_ago_in_words(@post.created_at) %>
+  <h6 class="text-secondary">
+    Submitted 
+    <span title="<%= @post.created_at.strftime("%d/%m/%y %H:%M:%S") %>">
+      <%= time_ago_in_words(@post.created_at) %>
+    </span>
     Ago by
     <%= link_to @post.user.username, user_path(@post.user)  %>
   </h6>
 </div>
 
-<p><%= @post.body %></p>
+<p><%= simple_format(@post.body) %></p>
 
 <% if user_signed_in? && current_user.id == @post.user_id %>
-  <div class='d-flex justify-content-end'>
-    <%= link_to 'Edit', edit_post_path(@post), class: 'btn btn-primary mr-2' %>
-    <%= link_to 'Delete', post_path(@post), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } %>
+  <div class="d-flex justify-content-end">
+    <%= link_to "Edit", edit_post_path(@post), class: "btn btn-primary mr-2" %>
+    <%= link_to "Delete", post_path(@post), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
   </div>
 <% end %>
 
