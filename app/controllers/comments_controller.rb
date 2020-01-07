@@ -9,15 +9,10 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:post_id])
-    @comment = @post.comments.find(params[:id])
-
-    if @comment.user != current_user
-      return render(:file => File.join(Rails.root, 'public/403.html'), :status => 403, :layout => false)
-    end
-
+    @comment = current_user.comments.find(params[:id])
     @comment.destroy
-    redirect_to post_path(@post)
+
+    redirect_to post_path(@comment.post)
   end
 
   private
